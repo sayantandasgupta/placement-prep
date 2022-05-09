@@ -38,18 +38,31 @@ public class set_matrix_zeroes {
      * that particular row/column to 0
      * 
      * After that particular operation, we check for the first row / column if they have to be turned to 0
+     * Also, check for edge cases, like if the first row and the first column need to be converted to zero
      */
 
     public static void solution(int[][] mat) {
-        boolean isCol = false;
+        boolean isCol = false, isRow = false;
 
         int rows = mat.length, cols = mat[0].length;
 
         for(int i=0;i<rows;i++) {
-
             // Flagging if the first column has to be set to 0
-            if(mat[i][0] == 0) isCol = true;
+            if(mat[i][0] == 0) {
+                isCol = true;
+                break;
+            }
+        }
 
+        for(int j=0;j<cols;j++) {
+            // Flagging if the first column has to be set to 0
+            if(mat[0][j] == 0) {
+                isRow = true;
+                break;
+            }
+        }
+
+        for(int i=0;i<rows;i++) {
             for(int j=0;j<cols;j++) {
                 if(mat[i][j] == 0) {
                     mat[i][0] = 0;
@@ -69,7 +82,7 @@ public class set_matrix_zeroes {
 
         // Check if the first row needs to be converted to zero
 
-        if(mat[0][0] == 0) {
+        if(isRow) {
             for(int j=0;j<cols;j++){
                 mat[0][j] = 0;
             }
