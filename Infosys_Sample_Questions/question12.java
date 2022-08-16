@@ -44,9 +44,12 @@ public class question12 {
 
         for(int i=0;i<n-1;i++) {
             if(arr[i+1] >= arr[i]) {
-                arr[i+1] -= 2*d - 1;
+                for(int j=1;j<=2*i-1;j++) {
+                    arr[i+1] -= j;
+                    if(arr[i+1] >= arr[i]) continue;
+                    else break;
+                }
                 count++;
-                d++;
             }
         }
 
